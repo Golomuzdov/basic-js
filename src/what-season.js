@@ -16,8 +16,8 @@ function getSeason(date) {
     return 'Unable to determine the time of year!';
 }
 
-  if (date.hasOwnProperty('getMonth')) {
-    throw new Error('Invalid date!')
+  if (typeof date.getMonth !== 'function' || date.toString() == new Date().toString()) {
+    throw new Error('Invalid date!');
 }
 
 	switch (date.getMonth()) {
@@ -38,6 +38,7 @@ function getSeason(date) {
     case 10:
       return "autumn";
   }
+  throw new Error('Invalid date!');
 }
 
 module.exports = {
